@@ -1,0 +1,46 @@
+
+-----------------------Create post
+mutation {
+  messageCreate(input: { request: "Grafbase", response: "https://grafbase.com" }) {
+    message {
+      id
+    }
+  }
+}
+
+
+-------------------------get posts
+query MessageCollection {
+  messageCollection(first:10){
+    edges{
+      node{
+        id,
+        request,
+        response
+      }
+    }
+  }
+}
+
+
+
+------------------------create message with chat
+mutation ChatCreate {
+  chatCreate(input: {
+      chatName: "Next.js"
+      conversations: {create: 
+      {request:"test",
+      response:"test response"}}
+    }){
+      chat{
+        chatName
+        conversations(first:10){
+          edges{
+            node{
+              id
+            }
+          }
+        }
+      }
+    }
+}
