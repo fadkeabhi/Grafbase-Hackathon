@@ -1,7 +1,10 @@
-import Head from 'next/head'
+"use client"
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Inter } from 'next/font/google'
 import Image from 'next/image';
+import Navbar from '@/components/Navbar';
+import ChatBox from '@/components/ChatBox';
+import ChatInput from '@/components/ChatInput';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,8 +12,11 @@ export default function Home() {
   const { data: session } = useSession();
   if(session) {
     return <>
-      Signed in {session.user?.email} <br/>
-      <button onClick={() => signOut()}>Sign out</button>
+      <div className='flex bg-[#51557E] flex-col w-screen h-screen'>
+        <Navbar />
+        <ChatBox />
+        <ChatInput />
+      </div>
     </>
   }
   return <>
