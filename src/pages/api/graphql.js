@@ -175,9 +175,48 @@ const getChatById = async (chatId) => {
 }
 
 
+const createMessageForChatByChatId = async (chatId, requestDb, responseDb) => {
+
+  query = `
+  mutation ChatUpdate {
+    chatUpdate(by: {id: "${chatId}"} input: {conversations : {create : {request:"${requestDb}", response: "${requestDb}"} }}){
+    chat{
+      id
+      conversations(last: 1){
+        edges{
+          node{
+            id
+            request
+          response
+          }
+        }
+      }
+      }
+    }
+  }
+      `
+
+  const res = await makeQuery(query)
+
+  if (res === null) {
+    console.log("apiError");
+    return "apiError"
+  }
+  // console.log(res.data.chatUpdate.chat.conversations.edges[0].node.request)
+  if(res.data.chatUpdate.chat.conversations.edges[0].node.request === requestDb){
+    return res.data.chatUpdate.chat.conversations.edges[0].node
+  }
+
+  return "failed"
+
+}
+
+
 
 
 // createUser("fadkeabhi4@gmail.com")
 // getUserByEmail("newuser@gmail.com")
 
-// getChatById("chat_01H7T1NEJX93ARRQ701RF7MCD3")
+getChatById("chat_01H7T1NEJX93ARRQ701RF7MCD3")
+
+// createMessageForChatByChatId("chat_01H7T1NEJX93ARRQ701RF7MCD3", "test request", "test response")
