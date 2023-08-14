@@ -10,7 +10,10 @@ const chat = g.model('Chat', {
   conversations: g.relation(message).optional().list()
 })
 
-
+const user = g.model('User',{
+  email: g.string(),
+  chats: g.relation(chat).optional().list()
+})
 
 
 export default config({
