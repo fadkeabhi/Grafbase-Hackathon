@@ -105,6 +105,11 @@ const getUserByEmail = async (email) => {
     console.log("apiError");
     return "apiError"
   }
+
+  if(res.data.user===null){
+    console.log("userNotFound");
+    return "userNotFound"
+  }
   // console.log(res.data.user.id)
   // console.log(res.data.user.email)
 
@@ -215,8 +220,8 @@ const createMessageForChatByChatId = async (chatId, requestDb, responseDb) => {
 
 
 // createUser("fadkeabhi4@gmail.com")
-// getUserByEmail("newuser@gmail.com")
+getUserByEmail("13123newuser@gmail.com")
 
-getChatById("chat_01H7T1NEJX93ARRQ701RF7MCD3")
+// getChatById("chat_01H7T1NEJX93ARRQ701RF7MCD3")
 
 // createMessageForChatByChatId("chat_01H7T1NEJX93ARRQ701RF7MCD3", "test request", "test response")
