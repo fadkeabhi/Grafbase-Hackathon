@@ -44,3 +44,65 @@ mutation ChatCreate {
       }
     }
 }
+
+
+------------------create new user
+mutation UserCreate {
+  userCreate(input: {
+    email:"fadkeabhi@gmail.com"
+  }) {
+    user{
+      id,
+      email
+    }
+  }
+}
+
+
+
+#updateemail
+mutation UserUpdate {
+  userUpdate(by: {id : "user_01H7SYZGE947A1T0XFPD0C94YA"} input: {email:"newmail@gmail.com"}) {
+    user {
+      email
+    }
+  }
+}
+
+
+#get user chats
+query User {
+  user(by: {email: "newuser@gmail.com"}){
+    id
+    email
+    chats(first: 20){
+      edges{
+        node{
+          id
+          chatName
+        }
+      }
+    }
+  }
+}
+
+
+
+#create new  chat
+mutation UserUpdate {
+  userUpdate(by: {email : "newuser@gmail.com"} input: {chats:{create: {
+    chatName:"test chat 3"
+    
+  }}}) {
+    user {
+      email
+      chats(first: 10){
+        edges{
+          node{
+            chatName
+          }
+        }
+      }
+    }
+  }
+}
