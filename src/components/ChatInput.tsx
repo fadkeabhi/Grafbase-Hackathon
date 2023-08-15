@@ -8,6 +8,9 @@ const ChatInput: FC = () => {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // const message : 
+
     
     await fetch("/api/AskQuestion", {
       method: "POST",
@@ -20,7 +23,7 @@ const ChatInput: FC = () => {
       }),
     })
       .then((res) => {
-        console.log(res)
+        console.log(res.json)
         setText("");
       })
       .catch((err) => console.log(err));

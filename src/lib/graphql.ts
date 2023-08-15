@@ -25,7 +25,7 @@ const graphbaseEndpoint = "http://127.0.0.1:4000/graphql"
 //     });
 // }
 
-const makeQuery = async (query) => {
+const makeQuery = async ({query}:Props1) => {
   try {
     const response = await axios.post(graphbaseEndpoint, { query });
 
@@ -47,9 +47,9 @@ const makeQuery = async (query) => {
 //     }
 //   }`)
 
-const createUser = async (email) => {
+const createUser = async (email:string) => {
 
-  query = `
+  let query = `
     mutation UserCreate {
         userCreate(input: {
           email: "${email}"
@@ -72,10 +72,10 @@ const createUser = async (email) => {
 
   if (res?.errors?.length && res?.errors[0]?.message == `The value "${email}" is already taken on field "email"`) {
     console.log("Email exists");
-    return "emailExists"
+    return "emailExists";
   }
   console.log("userCreated");
-  return "userCreated"
+  return "userCreated";
 
 }
 
@@ -138,7 +138,7 @@ const getChatById = async (chatId) => {
       chat(by: {id: "${chatId}"}) {
         id
         chatName
-        conversations(last: 50, orderBy: {createdAt:DESC}){
+        conversations(last: 50, orderBy: {createdAt:ASC}){
           edges{
             node{
               id
@@ -184,7 +184,7 @@ const createMessageForChatByChatId = async (chatId, requestDb, responseDb) => {
 
   query = `
   mutation ChatUpdate {
-    chatUpdate(by: {id: "${chatId}"} input: {conversations : {create : {request:"${requestDb}", response: "${requestDb}"} }}){
+    chatUpdate(by: {id: "${chatId}"} input: {conversations : {create : {request:"${requestDb}", response: "${responseDb}"} }}){
     chat{
       id
       conversations(last: 1){
