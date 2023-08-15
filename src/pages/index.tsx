@@ -10,7 +10,21 @@ export default function Home() {
   const { data: session } = useSession();
   if (session) {
     return (
-        <Dashboard />
+      <Dashboard>
+        <div className="flex items-center flex-col text-white text-center tracking-[5px] font-semibold justify-center w-full h-full">
+        <Image
+              src={
+                "/images/robot.gif"
+              }
+              width={600}
+              height={600}
+              alt=""
+            />
+          <h1 className="text-base sm:text-lg">
+            SELECT CHAT OR CREATE NEW CHAT
+          </h1>
+        </div>
+      </Dashboard>
     );
   }
   return (

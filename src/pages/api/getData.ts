@@ -41,8 +41,6 @@ export default async function handler(
     await axios
       .post(process.env.NEXT_GRAPH_ENDPOINT!, { query })
       .then(async(resp) => {
-        console.log(resp.data.data);
-        console.log(resp.data.data.chats);
         if (resp === null) {
           return res.status(500);
         }

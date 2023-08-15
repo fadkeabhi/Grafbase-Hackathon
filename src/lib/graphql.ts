@@ -113,20 +113,20 @@ const getUserByEmail = async (email) => {
   // console.log(res.data.user.id)
   // console.log(res.data.user.email)
 
-  chats = []
+  // chats = []
 
-  res.data.user.chats.edges.forEach(element => {
-    // console.log(element.node);
-    chats.push(element.node)
-  });
+  // res.data.user.chats.edges.forEach(element => {
+  //   // console.log(element.node);
+  //   chats.push(element.node)
+  // });
 
-  response = {
-    userId: res.data.user.id,
-    email: res.data.user.email,
-    chats: chats
-  }
-  console.log(response);
-  return response
+  // response = {
+  //   userId: res.data.user.id,
+  //   email: res.data.user.email,
+  //   chats: chats
+  // }
+  // console.log(response);
+  // return response
 
 }
 
