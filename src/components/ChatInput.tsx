@@ -30,7 +30,6 @@ const ChatInput: FC<Props> = ({chatId,setLoader,loader}:Props) => {
       }),
     })
       .then((res) => {
-        console.log(res.json)
         setText("");
       })
       .catch((err) => console.log(err));

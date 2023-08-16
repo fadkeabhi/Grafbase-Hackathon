@@ -36,8 +36,6 @@ const Dashboard = ({children}:{children: React.ReactNode}) => {
     if(data.data.user.chats.edges.length > 0){
       setChats(data.data.user.chats.edges);
     }
-    // setChats(data.data.user.chats.edges);
-    console.log(data.data);
   };
 
   useEffect(() => {

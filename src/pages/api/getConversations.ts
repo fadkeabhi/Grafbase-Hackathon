@@ -22,7 +22,6 @@ export default async function handler(
 
     if (method === "POST") {
         const { chatId } = req.body;
-        console.log(chatId);
         let query = `
     query Chat {
         chat(by: {id: "${chatId}"}) {
@@ -45,7 +44,6 @@ export default async function handler(
         await axios
             .post(process.env.NEXT_GRAPH_ENDPOINT!, { query })
             .then((resp) => {
-                console.log(resp.data.data.chat);
                 if (resp === null) {
                     return res.status(500);
                 }

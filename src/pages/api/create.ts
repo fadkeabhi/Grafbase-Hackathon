@@ -58,7 +58,7 @@ export default async function handler(
             }
           }
           `
-          await axios.post(process.env.NEXT_GRAPH_ENDPOINT!, { query2 }).then((result)=>{console.log(result)});
+          await axios.post(process.env.NEXT_GRAPH_ENDPOINT!, { query2 }).then((result)=>{});
         }
       })
       .catch((err) => {
@@ -70,7 +70,6 @@ export default async function handler(
           res.json({ response: "Email Exists" });
         }
       });
-      const chatN = "chatAdmin";
       
 
       

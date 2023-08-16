@@ -15,7 +15,6 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const { method } = req;
-  // process.env.NEXT_GRAPH_ENDPOINT!
   const { session,chatName } = req.body;
   if (method === "POST") {
     let query = `
@@ -45,7 +44,7 @@ export default async function handler(
 
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         res.status(500)
       });
   }
