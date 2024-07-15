@@ -19,6 +19,7 @@ Github repo : [https://github.com/Sid-80/Grafbase-Hackathon](https://github.com/
 Demo Deployment :
 
 ## Demo Video
+[https://youtu.be/47IBKeabrww](https://youtu.be/47IBKeabrww)
 
 ## Functionalities of Project
 
