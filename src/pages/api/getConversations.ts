@@ -21,10 +21,10 @@ export default async function handler(
     const { method } = req;
 
     if (method === "POST") {
-        const { session } = req.body;
+        const { chatId } = req.body;
         let query = `
     query Chat {
-        chat(by: {id: "${session?.chatId}"}) {
+        chat(by: {id: "${chatId}"}) {
           id
           chatName
           conversations(last: 50, orderBy: {createdAt:ASC}){
@@ -43,31 +43,16 @@ export default async function handler(
 
         await axios
             .post(process.env.NEXT_GRAPH_ENDPOINT!, { query })
-            .then(async (resp) => {
-                console.log(resp.data.chat);
+            .then((resp) => {
                 if (resp === null) {
                     return res.status(500);
                 }
 
-                if (resp.data.chat === null) {
+                if (resp.data.data.chat === null) {
                     return res.status(404);
                 }
 
-
-                var conversations: response["conversations"]  = []
-
-                resp.data.user.chats.edges.forEach(function (element: conversations) {
-                    conversations.push(element)
-                });
-
-                const response = {
-                    chatId: resp?.data?.chat?.id,
-                    chatName: resp?.data?.chat?.chatName,
-                    conversations: conversations
-                }
-
-
-                res.json(resp.data);
+                res.json(resp.data.data);
             })
             .catch((err) => {
                 console.log(err);
